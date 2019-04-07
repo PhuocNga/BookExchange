@@ -226,4 +226,14 @@ public class Book {
 	public void setStateByBookState(State stateByBookState) {
 		this.stateByBookState = stateByBookState;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", bookTitle=" + bookTitle + ", bookAuthor=" + bookAuthor + ", publicationYear="
+				+ publicationYear + ", bookCategory=" + bookCategory + ", userId=" + userId + ", isActive=" + isActive
+				+ ", bookImage=" + bookImage + ", bookPrice=" + bookPrice + ", bookQuantity=" + bookQuantity
+				+ ", bookDescription=" + bookDescription + ", bookState=" + bookState + ", bookcategoryByBookCategory="
+				+ bookcategoryByBookCategory + ", userByUserId=" + userByUserId + ", stateByBookState="
+				+ stateByBookState + "]";
+	}
 }

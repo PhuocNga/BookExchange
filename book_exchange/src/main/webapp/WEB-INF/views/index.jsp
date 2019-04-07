@@ -100,9 +100,6 @@
 				$(this).find('button').addClass('btn btn-warning');
 			}
 		})
-	
-		
-		
 	})
 </script>
 </html>

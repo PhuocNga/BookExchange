@@ -17,6 +17,10 @@
     <script src="${pageContext.request.contextPath}/resources/bs4/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bs4/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/owl/owl.carousel.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
       <script>
   		jQuery(document).ready(function(){
@@ -60,7 +64,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Trang chủ
+                    <a class="nav-link" href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Trang chủ
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -121,8 +125,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                         aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/manager">
                             <i class="fa fa-list"></i> Kho sách cá nhân
+                        </a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/manager/upload">
+                            <i class="fa fa-upload"></i> Đăng sách
                         </a>
                         <a class="dropdown-item border-bottom" href="${pageContext.request.contextPath}/personalManage">
                             <i class="fa fa-cart-plus"></i> Giao dịch cá nhân

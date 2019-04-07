@@ -25,5 +25,21 @@ public class BookServiceImpl implements IBookService {
 	public Book getBookInformation(int id) {
 		return bookDao.getBookInformation(id);
 	}
+	
+	public int maxID() {
+		return bookDao.maxID();
+	}
+	
+	//Thái
+	@Override
+	public List<Book> findBookByUser(String email) {
+		return bookDao.findBookByUser(email);
+	}
+
+	@Override
+	public void addBook(Book book) {
+		// TODO Auto-generated method stub
+		bookDao.addBook(book);
+	}
 
 }
