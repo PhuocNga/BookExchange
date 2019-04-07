@@ -8,5 +8,4 @@ public interface RegistrationService {
 	void userRegister(User user);
 
 	User getUserByEmail(String email);
-
 }

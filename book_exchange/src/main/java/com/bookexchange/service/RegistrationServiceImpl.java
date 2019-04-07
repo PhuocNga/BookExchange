@@ -29,4 +29,5 @@ public class RegistrationServiceImpl implements RegistrationService {
 	public User getUserByEmail(String email) {
 		return registrationDao.getUserByEmail(email);
 	}
+
 }

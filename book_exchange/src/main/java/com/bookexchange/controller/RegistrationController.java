@@ -61,7 +61,7 @@ public class RegistrationController {
 			model.addAttribute("loginFail", message.getMessage("register.user.login_fail", null, request.getLocale()));
 		}else {
 			if(success) {
-				return "index";
+				return "redirect:/";
 			}
 		}
 		return "login";

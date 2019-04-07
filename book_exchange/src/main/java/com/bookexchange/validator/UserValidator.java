@@ -27,6 +27,8 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "user.email.error");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "user.password.error");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "user.confirmPassWord.error");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "user.addresss.error");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberPhone", "user.numberPhone.error");
 		User validateUser = (User) target;
 		if (validateUser.getConfirmPassword().length() > 0
 				&& !validateUser.getConfirmPassword().equals(validateUser.getPassword())) {
@@ -41,6 +43,13 @@ public class UserValidator implements Validator {
 			}
 			if (registrationService.checkExistsEmail(validateUser.getEmail())) {
 				errors.rejectValue("email", "user.email.exists");
+			}
+		}
+		if(validateUser.getNumberPhone().length()>0) {
+			Pattern pattern=Pattern.compile("^[0-9]{10}$");
+			Matcher matcher=pattern.matcher(validateUser.getNumberPhone());
+			if(!matcher.matches()) {
+				errors.rejectValue("numberPhone", "user.numberphone.invalid");
 			}
 		}
 	}

@@ -14,6 +14,7 @@ public class User {
 	private String confirmPassword;
 	private Collection<Book> booksById;
 	private String address;
+	private String numberPhone;
 
 	@Id
 	@Column(name = "id")
@@ -104,14 +105,24 @@ public class User {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+
 	@Basic
-	@Column(name="address")
+	@Column(name = "address")
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	@Basic
+	@Column(name="numberPhone")
+	public String getNumberPhone() {
+		return numberPhone;
+	}
+
+	public void setNumberPhone(String numberPhone) {
+		this.numberPhone = numberPhone;
 	}
 
 }
