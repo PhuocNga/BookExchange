@@ -32,8 +32,8 @@
                                     <div class="span-4">
                                         <div class="box-info-book float-left">
                                             <div class="pic-book">
-                                                <a title="Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 6 (Tặng Kèm Poster)"
-                                                    class="image-border" href="/details.html">
+                                                <a title="${book.bookTitle}"
+                                                    class="image-border" href="${pageContext.request.contextPath}/book_info?bookId=${book.id}">
                                                     <img class="pict lazy-img"
                                                         src="${pageContext.request.contextPath}/resources/image/${book.bookImage}"
                                                         alt="${book.bookTitle}"
@@ -51,8 +51,8 @@
                                                     <span>Wataru WATARI </span>
                                                 </div>
                                                 <div class="text-content-book">
-                                                    <a title="Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 6 (Tặng Kèm Poster)"
-                                                        href="/details.html">
+                                                    <a title="${book.bookTitle}"
+                                                        href="${pageContext.request.contextPath}/book_info?bookId=${book.id}">
                                                         <c:set var="content" value="${fn:substring(book.bookDescription,0,90)} "/>
                                                         <c:out value="${content}..."/>
                                                     </a>

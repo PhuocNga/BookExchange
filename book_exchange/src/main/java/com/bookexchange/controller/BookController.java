@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +45,11 @@ public class BookController {
 
 	@Autowired
 	RegistrationService userService;
+	@GetMapping("/book_info")
+	public String getBookInformation(@RequestParam int bookId,Model model){
+		model.addAttribute("bookInfor", iBookService.getBookInformation(bookId));
+		return "bookDetail";
+	}
 
 	@RequestMapping("/manager")
 	public String index(Principal principal, ModelMap mm) {
@@ -88,7 +95,7 @@ public class BookController {
 				book.setBookPrice(Double.parseDouble(wr.getParameter("gia")));
 				book.setBookQuantity(Integer.parseInt(wr.getParameter("soluong")));
 			} catch (Exception e) {
-				rd.addFlashAttribute("message", "Vui lòng nhập thông tin hợp lệ!!!");
+				rd.addFlashAttribute("message", "Vui lÃ²ng nháº­p thÃ´ng tin há»£p lá»‡!!!");
 				return "redirect:/manager/upload";
 			}
 			
@@ -112,10 +119,11 @@ public class BookController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			rd.addFlashAttribute("message", "Vui lòng nhập thông tin hợp lệ");
+			rd.addFlashAttribute("message", "Vui lòng nhập thông tin sách");
 			return "redirect:/manager/upload";
 		}
-		rd.addFlashAttribute("message", "Thêm sách thành công!");
+		rd.addFlashAttribute("message", "Thêm sách thành công");
 		return "redirect:/manager/upload";
 	}
+	
 }

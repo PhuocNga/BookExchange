@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "security" %>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Trang chủ
+                    <a class="nav-link" href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Trang chủ
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -124,7 +125,7 @@
                 </li>
                 </security:authorize>
                 
-                <security:authorize access="isAuthenticated()">
+               <security:authorize access="isAuthenticated()">
                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -132,13 +133,16 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                         aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/manager">
                             <i class="fa fa-list"></i> Kho sách cá nhân
                         </a>
-                        <a class="dropdown-item border-bottom" href="${pageContext.request.contextPath}/personalManage">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/manager/upload">
+                            <i class="fa fa-upload"></i> Đăng sách
+                        </a>
+                        <a class="dropdown-item border-bottom" href="">
                             <i class="fa fa-cart-plus"></i> Giao dịch cá nhân
                         </a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/customerRequestManage">
+                        <a class="dropdown-item" href="">
                             <i class="fa fa-cog"></i> Yêu cầu giao dịch khách hàng
                         </a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">

@@ -49,5 +49,4 @@ public class RegistrationImpl implements RegistrationDao {
 			return null;
 		}
 	}
-
 }
