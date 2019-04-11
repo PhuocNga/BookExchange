@@ -62,8 +62,9 @@
   							});
   						}else{
   							$('.ml-auto').click();
-  							$('.alert-danger').show();
-  							$('.alert-danger').fadeOut(8000);
+  							$('.register_alert').addClass('alert alert-danger');
+  							$('.register_alert strong').text('Đăng ký tài khoản thành công!')
+  							$('.register_alert').fadeOut(8000);
   						}
   					}
   				});			
@@ -120,8 +121,8 @@
             </ul>
             <!-- Alert success message -->
             
-			<div class="alert alert-danger">
-		    <strong style="font-size: 18px">Tài khoản kích hoạt thành công! </strong>
+			<div class="register_alert">
+		    <strong style="font-size: 18px"></strong>
 		  	</div>
 		  	
 		  	

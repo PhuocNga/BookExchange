@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.bookexchange.dao.StateDaoImpl;
 //import com.bookexchange.dao.CategoryDaoImpl;
@@ -52,7 +53,7 @@ public class BookController {
 	}
 
 	@RequestMapping("/manager")
-	public String index(Principal principal, ModelMap mm) {
+	public String index(Principal principal, ModelMap mm,RedirectAttributes redir) {
 		if (principal == null) {
 			return "redirect:/";
 		}
@@ -125,5 +126,14 @@ public class BookController {
 		rd.addFlashAttribute("message", "Thêm sách thành công");
 		return "redirect:/manager/upload";
 	}
-	
+	@GetMapping("/manager/delete")
+	public RedirectView deleteBook(@RequestParam int bookId,Model model,RedirectAttributes redr) {
+		String bookTitle=iBookService.deleteBook(bookId);
+		redr.addFlashAttribute("bookNameDeleted",bookTitle);
+		
+		RedirectView redirectView=new RedirectView();
+		redirectView.setContextRelative(true);
+		redirectView.setUrl("/manager");
+		return redirectView;
+	}
 }

@@ -19,5 +19,6 @@ public interface IBookService {
 	public List<Book> findBookByUser(String email);
 	public void addBook(Book book);
 	public int maxID();
+	public String deleteBook(int bookId);
 
 }

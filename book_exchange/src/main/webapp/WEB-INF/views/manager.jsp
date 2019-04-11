@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 </head>
 <body>
 	<jsp:include page="menu.jsp"></jsp:include>
@@ -22,7 +24,12 @@
 						<table id="dtBasicExample"
 							class="table table-striped table-bordered" cellspacing="0"
 							width="100%">
+							
+							<div class="alert alert-danger">
+						    	<strong>Xóa sách ${bookNameDeleted} thành công</strong>
+						  	 </div>
 							<thead>
+							
 								<tr>
 									<th class="th-sm">Ảnh</th>
 									<th class="th-sm">Tên sách</th>
@@ -43,12 +50,41 @@
 										<td>${book.bookTitle}</td>
 										<td>${book.bookAuthor}</td>
 										<td>${book.bookcategoryByBookCategory.category}</td>
-										<td>${book.bookPrice }</td>
+										<td>${book.bookPrice}</td>
 										<td><a class="btn btn-sm btn-default" style="width: 100%">
 												<i class="fa fa-pencil-square-o"></i> Sửa
-										</a> <a class="btn btn-sm btn-danger" style="width: 100%"> <i
+										</a>
+										<a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#book${book.id}" style="width: 100%"> <i
 												class="fa fa-trash"></i> Xóa
-										</a></td>
+										</a>
+										
+										<div class="modal fade" id="book${book.id}">
+										    <div class="modal-dialog">
+										      <div class="modal-content">
+										      
+										        <!-- Modal Header -->
+										        <div class="modal-header">
+										          <h4 class="modal-title">Thông báo xóa</h4>
+										          <button type="button" class="close" data-dismiss="modal">&times;</button>
+										        </div>
+										        
+										        <!-- Modal body -->
+										        <div class="modal-body">
+										          <h5>Bạn có chắt xóa sách <span style="color: red">${book.bookTitle}</span></h5>
+										        </div>
+										        
+										        <!-- Modal footer -->
+										       <div class="modal-footer">
+										       	  <a href="${pageContext.request.contextPath}/manager/delete?bookId=${book.id}"><button type="button" class="btn btn-danger">Xóa</button></a>
+										          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										        </div>
+										        
+										      </div>
+										    </div>
+										  </div>
+										  
+										</td>
+										
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -59,7 +95,7 @@
 									<th>Tác giả</th>
 									<th>Loại</th>
 									<th>Giá</th>
-									<th>Thoa tác</th>
+									<th>Thao tác</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -68,11 +104,20 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" value="${bookNameDeleted}" id="message">
 	<script>
 		$(document).ready(function() {
 			$('#dtBasicExample').DataTable();
 			$('.dataTables_length').addClass('bs-select');
 		});
+	</script>
+	<script>
+		$('.alert-danger').hide();
+		var message=$('#message');
+		if(message!=null){
+			$('.alert-danger').fadeOut(1000);	
+		}
+	
 	</script>
 </body>
 </html>

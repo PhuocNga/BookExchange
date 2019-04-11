@@ -77,4 +77,8 @@ public class BookServiceImpl implements IBookService {
 		return bookDao.booksState((page - 1) * 9, (page * 9), state);
 	}
 
+	public String deleteBook(int bookId) {
+		return bookDao.deleteBook(bookId);
+	}
+
 }

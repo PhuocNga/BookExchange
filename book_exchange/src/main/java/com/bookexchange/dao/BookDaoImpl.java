@@ -34,7 +34,7 @@ public class BookDaoImpl implements IBookDao {
 		Book book = session.get(Book.class, id);
 		return book;
 	}
-	
+
 	@Override
 	public List<Book> findBookByUser(String email) {
 		Session session = sessionFactory.getCurrentSession();
@@ -51,11 +51,11 @@ public class BookDaoImpl implements IBookDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(book);
 	}
-	
+
 	public int maxID() {
 		Session session = sessionFactory.getCurrentSession();
 		List<Book> max = session.createQuery("from Book order by id asc").getResultList();
-		return max.get(max.size()-1).getId();
+		return max.get(max.size() - 1).getId();
 	}
 
 	@Override
@@ -63,26 +63,34 @@ public class BookDaoImpl implements IBookDao {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Book");
 		query.setFirstResult(start);
-		query.setMaxResults(end-start);
+		query.setMaxResults(end - start);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Book> booksCategory(int start, int end, int caterogy) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Book where bookCategory="+ caterogy);
+		Query query = session.createQuery("from Book where bookCategory=" + caterogy);
 		query.setFirstResult(start);
-		query.setMaxResults(end-start);
+		query.setMaxResults(end - start);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Book> booksState(int start, int end, int state) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Book where bookState="+ state);
+		Query query = session.createQuery("from Book where bookState=" + state);
 		query.setFirstResult(start);
-		query.setMaxResults(end-start);
+		query.setMaxResults(end - start);
 		return query.getResultList();
+	}
+
+	@Override
+	public String deleteBook(int bookId) {
+		Session session = sessionFactory.getCurrentSession();
+		Book book = sessionFactory.getCurrentSession().get(Book.class, bookId);
+		session.delete(book);
+		return book.getBookTitle();
 	}
 
 }
