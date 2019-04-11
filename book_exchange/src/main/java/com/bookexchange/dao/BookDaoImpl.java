@@ -92,5 +92,11 @@ public class BookDaoImpl implements IBookDao {
 		session.delete(book);
 		return book.getBookTitle();
 	}
+	
+	@Override
+	public void updateBook(Book book) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(book);
+	}
 
 }

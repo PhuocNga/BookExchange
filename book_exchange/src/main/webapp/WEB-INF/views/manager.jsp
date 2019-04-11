@@ -18,7 +18,7 @@
 				<div class="card text-white bg-white mb-3">
 					<div class="card-header text-dark h4">Kho sách cá nhân</div>
 					<div class="card-body bg-white">
-						<a class="btn btn-sm btn-primary mb-5"> <i class="fa fa-upload"></i>
+						<a href="${pageContext.request.contextPath}/manager/upload" class="btn btn-sm btn-primary mb-5"> <i class="fa fa-upload"></i>
 							Thêm sách
 						</a>
 						<table id="dtBasicExample"
@@ -51,7 +51,9 @@
 										<td>${book.bookAuthor}</td>
 										<td>${book.bookcategoryByBookCategory.category}</td>
 										<td>${book.bookPrice}</td>
-										<td><a class="btn btn-sm btn-default" style="width: 100%">
+										<td><a class="btn btn-sm btn-default" 
+										href="${pageContext.request.contextPath}/manager/edit?bookid=${book.id}"
+										style="width: 100%">
 												<i class="fa fa-pencil-square-o"></i> Sửa
 										</a>
 										<a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#book${book.id}" style="width: 100%"> <i

@@ -15,4 +15,5 @@ public interface IBookDao {
 	public List<Book> booksCategory(int start, int end, int caterogy);
 	public List<Book> booksState(int start, int end, int state);
 	public String deleteBook(int bookId);
+	public void updateBook(Book book);
 }

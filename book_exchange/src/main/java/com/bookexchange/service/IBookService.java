@@ -14,11 +14,12 @@ public interface IBookService {
 	public List<Book> booksState(int page, int state);
 
 	public Book getBookInformation(int id);
-//	Thái
+//	Thï¿½i
 	
 	public List<Book> findBookByUser(String email);
 	public void addBook(Book book);
 	public int maxID();
 	public String deleteBook(int bookId);
+	public void updateBook(Book book);
 
 }

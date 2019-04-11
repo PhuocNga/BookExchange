@@ -30,7 +30,7 @@ public class BookServiceImpl implements IBookService {
 		return bookDao.maxID();
 	}
 
-	// Thái
+	// Thï¿½i
 	@Override
 	public List<Book> findBookByUser(String email) {
 		return bookDao.findBookByUser(email);
@@ -79,6 +79,10 @@ public class BookServiceImpl implements IBookService {
 
 	public String deleteBook(int bookId) {
 		return bookDao.deleteBook(bookId);
+	}
+
+	public void updateBook(Book book) {
+		bookDao.updateBook(book);
 	}
 
 }
