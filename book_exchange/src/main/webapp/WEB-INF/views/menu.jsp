@@ -18,9 +18,25 @@
     <script src="${pageContext.request.contextPath}/resources/bs4/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bs4/js/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/owl/owl.carousel.min.js"></script>
+
       <script>
-  	   
   		jQuery(document).ready(function(){
+  			$.ajax({
+					method:'GET',
+					url:'${pageContext.request.contextPath}/bookcategorys',
+					success:function(data){
+						data.forEach((cate)=>{
+							var a = document.createElement("a");
+							a.setAttribute('class', 'dropdown-item');
+							a.setAttribute('href', '${pageContext.request.contextPath}/filter/category/'+cate.id);
+							a.innerHTML = cate.category;
+							$('#menu_filter_category').append(a);
+						});
+					
+					}
+				});
+  			
+  			$('.alert-danger').hide()
   			$('#registerButton').on('click',function(e){
   				e.preventDefault();
   				$('.error').remove();
@@ -46,12 +62,11 @@
   							});
   						}else{
   							$('.ml-auto').click();
-  							$('.register_alert').addClass('alert alert-danger');
-  							$('.register_alert strong').text('Đăng ký tài khoản thành công!')
-  							$('.register_alert').fadeOut(8000);
+  							$('.alert-danger').show();
+  							$('.alert-danger').fadeOut(8000);
   						}
   					}
-  				})			
+  				});			
   			})
   		})
     </script>
@@ -80,22 +95,33 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><i class="fa fa-list"></i> Loại sách
                     </a>
-                    <div style="columns: 1;" class="dropdown-menu dropdown-default"
+                    <div id="menu_filter_category" style="columns: 1;" class="dropdown-menu dropdown-default"
                         aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="./search.html">Tìm kiếm</a>
-                        <a class="dropdown-item" href="./upbook.html">Đăng sách</a>
-                        <a class="dropdown-item" href="./details.html">Chi tiết sản phẩm</a>
-                        <a class="dropdown-item" href="./confirm.html">Thông tin đặt sách</a>
+                        
+                   
                     </div>
                 </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-list"></i> Loại sách
+                    </a>
+                    <div id="menu_filter_category" style="columns: 1;" class="dropdown-menu dropdown-default"
+                        aria-labelledby="navbarDropdownMenuLink-333">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/filter/state/1">Mượn</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/filter/state/2">Bán</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/filter/state/3">Trao đổi</a>
+                    </div>
+                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-search-minus"></i> Tìm nâng cao</a>
                 </li>
             </ul>
             <!-- Alert success message -->
             
-			<div class="register_alert">
-		    <strong style="font-size: 18px"></strong>
+			<div class="alert alert-danger">
+		    <strong style="font-size: 18px">Tài khoản kích hoạt thành công! </strong>
 		  	</div>
 		  	
 		  	
