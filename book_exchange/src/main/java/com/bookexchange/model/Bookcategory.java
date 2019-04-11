@@ -1,9 +1,6 @@
 package com.bookexchange.model;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Collection;
 
 @Entity
@@ -31,7 +28,6 @@ public class Bookcategory {
     public void setCategory(String category) {
         this.category = category;
     }
-    
 
     @Override
     public boolean equals(Object o) {
@@ -53,9 +49,7 @@ public class Bookcategory {
         return result;
     }
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "bookcategoryByBookCategory", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-  
+    @OneToMany(mappedBy = "bookcategoryByBookCategory")
     public Collection<Book> getBooksById() {
         return booksById;
     }

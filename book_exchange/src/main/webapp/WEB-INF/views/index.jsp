@@ -26,7 +26,7 @@
                     <div class="span12 home-container-left">
                         <div class="mainbox-container-v5 clearfix product-best-seller">
                             <div class="mainbox-body">
-                                <div class="box-info-wrapper" id="pagination">
+                                <div class="box-info-wrapper">
                                 
                                 <c:forEach items="${books}" var="book">
                                     <div class="span-4">
@@ -74,8 +74,9 @@
                                     </div>
                                     
                         </c:forEach>
+
+                                </div>
                             </div>
-								<input type="text" value="1" style="display: none;" id="currentPage">
                         </div>
                     </div>
                 </div>
@@ -85,66 +86,11 @@
     <jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script>
-
-	function setState(state){
-		if(parseInt(state)==1){
-			return '<div class="box-sale-off"><button class="btn btn-info">Mượn</button></div>';
-		}
-		if(parseInt(state)==2){
-			return '<div class="box-sale-off"><button class="btn btn-danger">Bán</button></div>';		
-		}
-		if(parseInt(state)==3){
-			return '<div class="box-sale-off"><button class="btn btn-warning">Trao đổi</button></div>';
-		}
-		
-	}
-	
-	function formatNumber(pnumber)
-	{
-		return (pnumber+'').replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-	}
-
 	jQuery(document).ready(function(){
-			var currentPage = $('#currentPage').val();
-			$(window).scroll(function() {
-			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				   $('#currentPage').val(parseInt($('#currentPage').val())+1);
-			       $.ajax({
-			    	  'url': '/book_exchange/paginaion?page='+$('#currentPage').val(),
-			    	  'type': 'GET',
-			    	  'dataType': 'json',
-			    	  'Content-type': 'application/json',
-			    	  success: function(data){
-			    		  data.forEach(function(book){
-			    			  
-				    		  $('#pagination').append(
-				    				  '<div class="span-4">'+
-			                           '<div class="box-info-book float-left">'+
-			                               '<div class="pic-book">'+
-			                                   '<a title="'+book.bookTitle+'" class="image-border" href="${pageContext.request.contextPath}/book_info?bookId='+book.id+'"><img class="pict lazy-img" src="${pageContext.request.contextPath}/resources/image/'+book.bookImage+'" alt="'+book.bookTitle+'"/></a>'+
-			                               '</div>'+
-			                            	'<div class="text-info-book">'+
-			                                   	'<div class="box-title-book"><div class="title-book-small"><a href="${pageContext.request.contextPath}/" class="product-title" title="'+book.bookTitle+'">'+ book.bookTitle+'"/></a></div><span>Wataru WATARI </span></div>'+
-			                                  	'<div class="text-content-book"><a title="'+book.bookTitle+'" href="${pageContext.request.contextPath}/book_info?bookId='+book.id+'">'+book.bookDescription.substring(0,90)+'...</a></div>'+
-			                              	'</div>'+
-			                              '<div class="box-info-price clearfix">'+ setState(book.bookState)+'<div class="box-price"><span class="price"><span class="price-num">'+formatNumber(book.bookPrice)+'</span><span class="price-num">đ</span></span></div></div>'+
-			                          ' </div>'+
-			                      ' </div>');
-			    		  });
-			    	  },
-			    	  error: function(err){
-			    		  console.log($('#currentPage').val());
-			    	  }
-			       });
-			   }
-			});
-		
-			
-		
 		$.each($('.box-sale-off'),function(){
 			let state=$(this).find('.bookStates').val();
 			if(parseInt(state)==1){
-				$(this).find('button').text('Mượn');
+				$(this).find('button').text('Mượng');
 				$(this).find('button').addClass('btn btn-info');
 			}else if(parseInt(state)==2){
 				$(this).find('button').text('Bán');

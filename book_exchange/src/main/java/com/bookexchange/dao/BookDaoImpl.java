@@ -59,30 +59,11 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public List<Book> books(int start, int end) {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Book");
-		query.setFirstResult(start);
-		query.setMaxResults(end-start);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Book> booksCategory(int start, int end, int caterogy) {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Book where bookCategory="+ caterogy);
-		query.setFirstResult(start);
-		query.setMaxResults(end-start);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Book> booksState(int start, int end, int state) {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Book where bookState="+ state);
-		query.setFirstResult(start);
-		query.setMaxResults(end-start);
-		return query.getResultList();
+	public String deleteBook(int bookId) {
+		Session session=sessionFactory.getCurrentSession();
+		Book book=sessionFactory.getCurrentSession().get(Book.class, bookId);
+		session.delete(book);
+		return book.getBookTitle();
 	}
 
 }

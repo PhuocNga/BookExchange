@@ -3,8 +3,6 @@ package com.bookexchange.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Collection;
 
 @Entity(name = "User")
@@ -90,8 +88,7 @@ public class User {
 		return result;
 	}
 
-	@OneToMany(mappedBy = "userByUserId", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "userByUserId")
 	public Collection<Book> getBooksById() {
 		return booksById;
 	}
