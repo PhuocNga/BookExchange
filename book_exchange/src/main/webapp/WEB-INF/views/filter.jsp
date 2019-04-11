@@ -110,7 +110,7 @@
 			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
 				   $('#currentPage').val(parseInt($('#currentPage').val())+1);
 			       $.ajax({
-			    	  'url': '/book_exchange/paginaion?page='+$('#currentPage').val(),
+			    	  'url': '/book_exchange/paginaion-category?page='+$('#currentPage').val()+"&category="+'${catogory}',
 			    	  'type': 'GET',
 			    	  'dataType': 'json',
 			    	  'Content-type': 'application/json',

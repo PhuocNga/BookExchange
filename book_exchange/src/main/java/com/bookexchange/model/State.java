@@ -1,6 +1,9 @@
 package com.bookexchange.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Collection;
 
 @Entity
@@ -49,7 +52,8 @@ public class State {
         return result;
     }
 
-    @OneToMany(mappedBy = "stateByBookState")
+    @OneToMany(mappedBy = "stateByBookState",fetch=FetchType.LAZY)
+    @JsonManagedReference
     public Collection<Book> getBooksById() {
         return booksById;
     }

@@ -1,6 +1,10 @@
 package com.bookexchange.model;
 
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -197,8 +201,10 @@ public class Book {
 		return result;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "bookCategory", referencedColumnName = "id", insertable = false, updatable = false)
+	
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "bookCategory", referencedColumnName = "id", updatable = false, insertable = false,unique = true)
 	public Bookcategory getBookcategoryByBookCategory() {
 		return bookcategoryByBookCategory;
 	}
@@ -208,6 +214,7 @@ public class Book {
 	}
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
 	public User getUserByUserId() {
 		return userByUserId;
@@ -218,6 +225,7 @@ public class Book {
 	}
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "bookState", referencedColumnName = "id", insertable = false, updatable = false)
 	public State getStateByBookState() {
 		return stateByBookState;
